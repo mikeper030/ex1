@@ -118,10 +118,10 @@
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Board.h" />
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\macros.h" />
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Utilities.h" />
-    <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Vertex.h" />
     <ClInclude Include="IsoscelesTriangle.h" />
     <ClInclude Include="Kite.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files (1)\ex1_files\Board.cpp" />
