@@ -27,6 +27,15 @@
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files (1)\ex1_files\Board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IsoscelesTriangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Kite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Board.h">
@@ -39,6 +48,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IsoscelesTriangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

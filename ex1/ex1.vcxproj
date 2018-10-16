@@ -119,12 +119,18 @@
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\macros.h" />
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Utilities.h" />
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Vertex.h" />
+    <ClInclude Include="IsoscelesTriangle.h" />
+    <ClInclude Include="Kite.h" />
+    <ClInclude Include="Rectangle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files (1)\ex1_files\Board.cpp" />
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files\Shapes.cpp" />
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files\Utilities.cpp" />
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files\Vertex.cpp" />
+    <ClCompile Include="IsoscelesTriangle.cpp" />
+    <ClCompile Include="Kite.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
