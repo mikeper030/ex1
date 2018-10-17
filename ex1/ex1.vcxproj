@@ -118,6 +118,7 @@
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Board.h" />
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\macros.h" />
     <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Utilities.h" />
+    <ClInclude Include="House.h" />
     <ClInclude Include="IsoscelesTriangle.h" />
     <ClInclude Include="Kite.h" />
     <ClInclude Include="Rectangle.h" />
@@ -128,6 +129,7 @@
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files\Shapes.cpp" />
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files\Utilities.cpp" />
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files\Vertex.cpp" />
+    <ClCompile Include="House.cpp" />
     <ClCompile Include="IsoscelesTriangle.cpp" />
     <ClCompile Include="Kite.cpp" />
     <ClCompile Include="Rectangle.cpp" />
