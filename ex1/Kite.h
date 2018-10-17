@@ -1,6 +1,7 @@
 #pragma once
-class Kite
 #include "Vertex.h"
+
+class Kite
 {
 public:
 	Kite();

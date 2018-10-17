@@ -11,12 +11,13 @@ public:
 	~Rectangle();
 	Vertex getBottomLeft() const;
 	Vertex getTopRight()const;
-	Vertex getWidth() const;
-	Vertex getHeight() const;
+	double getWidth() const;
+	double getHeight() const;
 
 
   
 private:
+	Vertex bottom_left, top_right;
 	void verifyInput();
 
 };
