@@ -10,7 +10,9 @@ Rectangle::Rectangle()
 //first element is bottom left second is top right
 Rectangle::Rectangle(const Vertex vertices[2])
 	:Rectangle(vertices[0], vertices[1])
-{}
+{
+
+}
 //2 vertexes 
 Rectangle::Rectangle(const Vertex& bottomLeft, const Vertex& topRight)
 {

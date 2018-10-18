@@ -5,6 +5,7 @@
 class IsoscelesTriangle
 {
 public:
+
 	IsoscelesTriangle();
 	IsoscelesTriangle(const Vertex vertices[3]);
 	IsoscelesTriangle(const Vertex& center, double width, double height);
