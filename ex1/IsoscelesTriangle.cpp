@@ -3,6 +3,7 @@ const double Epsilon = 0.01;
 
 IsoscelesTriangle::IsoscelesTriangle()
 {
+
 	m_vertices[0] = Vertex{ 20,20 };
 	m_vertices[1] = Vertex{ 25,25 };
 	m_vertices[2] = Vertex{ 30,20 };
