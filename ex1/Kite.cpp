@@ -40,9 +40,6 @@ double Kite::getPerimeter()const
 Vertex Kite::getCenter()const
 {
 
-}
-bool Kite::scale(double factor) const
-{
 
 }
 Kite::~Kite()
