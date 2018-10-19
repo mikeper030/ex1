@@ -32,7 +32,7 @@ Vertex IsoscelesTriangle::getVertex(int index) const
 {
 	return Vertex();
 }
-
+ 
 double IsoscelesTriangle::getLength() const
 {
 	return (m_vertices[2].m_x - m_vertices[0].m_x);
