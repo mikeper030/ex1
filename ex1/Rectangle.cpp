@@ -1,5 +1,6 @@
 #include "Rectangle.h"
 #include "macros.h"
+#include "Board.h"
 const double default_x_bottom = 20,default_y_bottom=10;
 const double default_x_top = 30, default_y_top = 20;
 
@@ -54,6 +55,7 @@ double Rectangle::getHeight()const
 {
 	return top_right.m_y - top_right.m_y;
 }
+//default destructor
 Rectangle::~Rectangle()
 {
 }
