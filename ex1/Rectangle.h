@@ -1,5 +1,6 @@
 #pragma once
 #include "Vertex.h"
+#include "Board.h"
 class Rectangle
 {
 public:
@@ -13,11 +14,17 @@ public:
 	Vertex getTopRight()const;
 	double getWidth() const;
 	double getHeight() const;
+	//function method
+	void draw(Board & board) const;
+	Rectangle getBoundingRectangle() const;
+	double getArea() const;
+	double getPerimeter() const;
+	Vertex getCenter() const;
+	bool scale(double factor);
 
 
-  
 private:
-	Vertex bottom_left, top_right;
+	Vertex bottom_left, top_right; // m_bottomLeft
 	void verifyInput();
 
 };
