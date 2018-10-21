@@ -1,7 +1,7 @@
 #include "IsoscelesTriangle.h"
 const double Epsilon = 0.01;
 
-//deffult variable
+//default constructor
 IsoscelesTriangle::IsoscelesTriangle()
 {
 	m_vertices[0] = Vertex{ 20,20 };

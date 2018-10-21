@@ -16,7 +16,8 @@ public:
 	Vertex getCenter()const;
 	~Kite();
 private:
-	IsoscelesTriangle upper,lower;
+	bool isTrianglesok(IsoscelesTriangle first, IsoscelesTriangle second)const;
+	IsoscelesTriangle m_upper,m_lower;
 
 };
 

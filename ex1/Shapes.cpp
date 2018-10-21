@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 #include "macros.h"
 #include "Vertex.h"
 #include "Board.h"
@@ -8,6 +9,7 @@
 #define ISOSCELESTRIANGLE   1
 #define HOUSE               1
 #define KITE                1
+
 #if RECTANGLE
 #include "Rectangle.h"
 void drawAndPrint(const Rectangle&, Board&);
@@ -147,7 +149,8 @@ int main()
 		Vertex secondTriangle[3];
 		readVerticesForKite(firstTriangle, true);
 		readVerticesForKite(secondTriangle, false);
-		Kite kite(firstTriangle, secondTriangle);
+		IsoscelesTriangle triangles[2] = { firstTriangle, secondTriangle };
+		Kite kite(triangles);
 		drawAndPrint(kite, board);
 
 		board.clear();
