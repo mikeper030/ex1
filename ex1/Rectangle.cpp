@@ -13,7 +13,7 @@ Rectangle::Rectangle(const Vertex vertices[2])
 {
 
 }
-//2 vertexes 
+//2 vertices 
 Rectangle::Rectangle(const Vertex& bottomLeft, const Vertex& topRight)
 {
 	if (bottomLeft.isValid&&topRight.isValid)
