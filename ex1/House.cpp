@@ -8,6 +8,7 @@ House::House()
 
 House::House(const Rectangle & rectangle, const IsoscelesTriangle & triangle)
 {
+
 }
 
 House::House(const Vertex & roofTop, double width, double roofHeight, double baseHeight)
