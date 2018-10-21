@@ -24,6 +24,9 @@ public:
 	~IsoscelesTriangle();
 private:
 	Vertex m_vertices[3];
+	bool parallel()const;
+	bool checkVer() const;
+	void inithlizing();
 
 };
 
