@@ -3,7 +3,7 @@
 
 bool Vertex::isHigherThan(const Vertex& other) const
 {
-    return (m_y > other.m_y);
+     return (m_y > other.m_y);
 }
 
 bool Vertex::isRighterThan(const Vertex& other) const
