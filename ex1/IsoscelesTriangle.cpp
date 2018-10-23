@@ -81,9 +81,34 @@ double IsoscelesTriangle::getHeight() const
 	return m_vertices[1].m_y;
 }
 
+void IsoscelesTriangle::draw(Board & board) const
+{
+	board.drawLine();
+}
+
 Rectangle IsoscelesTriangle::getBoundingRectangle() const
 {
 	return Rectangle();
+}
+
+double IsoscelesTriangle::getArea() const
+{
+	return getLength()*getHeight();
+}
+
+double IsoscelesTriangle::getPerimeter() const
+{
+	return (getScelesLength()*2)+getLength();
+}
+
+Vertex IsoscelesTriangle::getCenter() const
+{
+	return Vertex{m_vertices[0].m_x+(getLength()/2),m_vertices[0].m_y+(getHeight()/2)};
+}
+
+bool IsoscelesTriangle::scale(double factor)
+{
+	return false;
 }
 
 

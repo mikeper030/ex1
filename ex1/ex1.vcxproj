@@ -115,24 +115,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Board.h" />
-    <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\macros.h" />
-    <ClInclude Include="..\..\..\..\Desktop\OOP1\ex1_files\Utilities.h" />
+    <ClInclude Include="Board.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="IsoscelesTriangle.h" />
     <ClInclude Include="Kite.h" />
     <ClInclude Include="Macros.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Utilities.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files (1)\ex1_files\Board.cpp" />
-    <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files\Utilities.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="IsoscelesTriangle.cpp" />
     <ClCompile Include="Kite.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shapes.cpp" />
+    <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
