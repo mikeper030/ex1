@@ -2,6 +2,7 @@
 #include "IsoscelesTriangle.h"
 #include "Rectangle.h"
 #include "Board.h"
+#include "Vertex.h"
 
 class House
 {
@@ -20,5 +21,9 @@ public:
 	Vertex getCenter() const;
 	bool scale(double factor);
 	~House();
+
+private:
+	Vertex m_rect[2];
+	Vertex m_triag[3];
 };
 

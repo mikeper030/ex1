@@ -8,12 +8,13 @@ IsoscelesTriangle::IsoscelesTriangle()
 	m_vertices[1] = Vertex{ 25,25 };
 	m_vertices[2] = Vertex{ 30,20 };
 }
-//
+//constractor that he get array of vertex and he intilizing by deffult value
+//and check the value of user , and if is out of range stay with deffult value
 IsoscelesTriangle::IsoscelesTriangle(const Vertex vertices[3])
 	:IsoscelesTriangle()
 {
 	if (vertices[0].isValid() && vertices[1].isValid() 
-		&& vertices[2].isValid() && (vertices[0].m_y - vertices[2].m_y) <= 0)
+		&& vertices[2].isValid() && (vertices[0].m_y - vertices[2].m_y) <= Epsilon)
 	{
 		m_vertices[0] = vertices[0];
 		m_vertices[1] = vertices[1];
@@ -21,7 +22,7 @@ IsoscelesTriangle::IsoscelesTriangle(const Vertex vertices[3])
 	}
 
 }
-//to ask mike what to do here
+//get the vertex by center and width and height
 IsoscelesTriangle::IsoscelesTriangle(const Vertex & center, double width, double height)
 {
 	m_vertices[1] = center;
@@ -62,7 +63,7 @@ void IsoscelesTriangle::inithlizing()
 
 Vertex IsoscelesTriangle::getVertex(int index) const
 {
-	return Vertex(m_vertices[index]) ;
+	return m_vertices[index] ;
 }
  
 double IsoscelesTriangle::getLength() const
@@ -80,9 +81,34 @@ double IsoscelesTriangle::getHeight() const
 	return m_vertices[1].m_y;
 }
 
+void IsoscelesTriangle::draw(Board & board) const
+{
+	board.drawLine();
+}
+
 Rectangle IsoscelesTriangle::getBoundingRectangle() const
 {
 	return Rectangle();
+}
+
+double IsoscelesTriangle::getArea() const
+{
+	return getLength()*getHeight();
+}
+
+double IsoscelesTriangle::getPerimeter() const
+{
+	return (getScelesLength()*2)+getLength();
+}
+
+Vertex IsoscelesTriangle::getCenter() const
+{
+	return Vertex{m_vertices[0].m_x+(getLength()/2),m_vertices[0].m_y+(getHeight()/2)};
+}
+
+bool IsoscelesTriangle::scale(double factor)
+{
+	return false;
 }
 
 
