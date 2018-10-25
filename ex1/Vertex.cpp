@@ -1,5 +1,5 @@
 #include "Vertex.h"
-#include "macros.h"
+#include "Macros.h"
 
 bool Vertex::isHigherThan(const Vertex& other) const
 {

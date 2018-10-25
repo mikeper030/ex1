@@ -10,6 +10,7 @@ Kite::Kite(const IsoscelesTriangle triangles[2])
 {
 
 }
+
 //second constructor argumnets are clear..
 Kite::Kite(const Vertex& top, double width, double topHeight, double bottomHeight)
 {
@@ -18,7 +19,7 @@ Kite::Kite(const Vertex& top, double width, double topHeight, double bottomHeigh
 void Kite::draw(Board&board)const
 {
 //drawLine method accepts two vertices as parameters
- 	board.drawLine();
+ 	//board.drawLine();
 }
 //clalculates and returns the total height of the kite
 double Kite:: getTotalHeight()const

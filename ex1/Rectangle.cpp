@@ -1,5 +1,5 @@
 #include "Rectangle.h"
-#include "macros.h"
+#include "Macros.h"
 const double default_x_bottom = 20, default_y_bottom = 10;
 const double default_x_top = 30, default_y_top = 20;
 
@@ -16,7 +16,7 @@ Rectangle::Rectangle(const Vertex vertices[2])
 //2 vertices 
 Rectangle::Rectangle(const Vertex& bottomLeft, const Vertex& topRight)
 {
-	if (bottomLeft.isValid&&topRight.isValid)
+	if (bottomLeft.isValid() && topRight.isValid())
 	{
 		bottom_left = bottomLeft;
 		top_right = topRight;
@@ -72,7 +72,7 @@ double Rectangle::getPerimeter() const
 }
 Vertex Rectangle::getCenter() const
 {
-	return Vertex{bottom_left.m_x+(getWidth)/2,bottom_left.m_y+(getHeight)/2};
+	return Vertex{bottom_left.m_x + getWidth()/2 , bottom_left.m_y + getHeight()/2};
 }
 bool Rectangle::scale(double factor)
 {

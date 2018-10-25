@@ -7,9 +7,8 @@ public:
 	Kite();
 	Kite(const IsoscelesTriangle triangles[2]);
 	Kite(const Vertex& top, double width, double topHeight, double bottomHeight);
-	Kite(const IsoscelesTriangle triangles[2]);
 	double getTotalHeight()const;
-	void draw(Board&board)const;
+	void draw(Board & board)const;
 	Rectangle getBoundingRectangle()const;
 	double getArea()const;
 	double getPerimeter()const;
