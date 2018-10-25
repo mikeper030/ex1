@@ -2,6 +2,7 @@
 #include "Vertex.h"
 #include "Board.h"
 #include "Rectangle.h"
+#include "Utilities.h"
 #include <math.h>
 class IsoscelesTriangle
 {
