@@ -7,6 +7,8 @@ IsoscelesTriangle::IsoscelesTriangle()
 	m_vertices[0] = Vertex{ 20,20 };
 	m_vertices[1] = Vertex{ 25,25 };
 	m_vertices[2] = Vertex{ 30,20 };
+
+	//gvhbh
 }
 //constractor that he get array of vertex and he intilizing by deffult value
 //and check the value of user , and if is out of range stay with deffult value
