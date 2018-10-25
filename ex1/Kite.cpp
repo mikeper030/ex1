@@ -2,6 +2,7 @@
 #include "Board.h"
 #include "Vertex.h"
 #include "IsoscelesTriangle.h"
+#include <iostream>
 const Vertex vertices1[3] = { {30,20},{25,25},{20,20} };
 const Vertex vertices2[3] = { {30, 20} ,{25, 15}, {20, 20} };
 //default constructor
@@ -16,6 +17,7 @@ Kite::Kite(const IsoscelesTriangle triangles[2])
 {
 	if (isTrianglesok(triangles[0], triangles[1]))
 	{
+		
 	//triangles are ok now check which is lower or upper
 		if (triangles[0].getVertex(1).m_y > triangles[1].getVertex(1).m_y)
 		{	//first is top
@@ -27,7 +29,8 @@ Kite::Kite(const IsoscelesTriangle triangles[2])
 			m_upper = triangles[1];
 			m_lower = triangles[0];
 		}
-    }
+	}
+	
 		
 }
 //second constructor argumnets are clear..
@@ -39,11 +42,7 @@ Kite::Kite(const Vertex& top, double width, double topHeight, double bottomHeigh
 	IsoscelesTriangle upper(vertices_top);
 }
 //draw the kite method
-void Kite::draw(Board&board)const
-{
-//drawLine method accepts two vertices as parameters
- 	//board.drawLine();
-}
+
 //private method to verify triangles sizes and relativeness
 bool Kite::isTrianglesok(IsoscelesTriangle first,IsoscelesTriangle second)const
 {
@@ -57,10 +56,10 @@ bool Kite::isTrianglesok(IsoscelesTriangle first,IsoscelesTriangle second)const
 	return false;
 }
 
-//clalculates and returns the total height of the kite
+//calculates and returns the total height of the kite
 double Kite:: getTotalHeight()const
 {
-	return (m_lower.getHeight+m_upper.getHeight);
+	return (m_lower.getHeight()+m_upper.getHeight());
 }
 Rectangle Kite::getBoundingRectangle()const
 {
@@ -74,11 +73,25 @@ double Kite::getArea()const
 }
 double Kite::getPerimeter()const
 {
-	return (m_lower.getPerimeter() + m_upper.getPerimeter) - ((m_lower.getVertex(2).m_x - m_lower.getVertex(0).m_x)*2);
+	return (m_lower.getPerimeter() + m_upper.getPerimeter()) - ((m_lower.getVertex(2).m_x - m_lower.getVertex(0).m_x)*2);
 }
 Vertex Kite::getCenter()const
 {
 	return Vertex{(m_lower.getVertex(2).m_x-m_lower.getVertex(0).m_x)/2,m_upper.getVertex(1).m_y-m_lower.getVertex(1).m_y};
+}
+bool Kite::scale(double factor)
+{
+	return false;
+}
+void Kite::draw(Board& board)const
+{
+    //need to implement the drawing
+	board.drawLine(m_upper.getVertex(0), m_upper.getVertex(1));
+	board.drawLine(m_upper.getVertex(1), m_upper.getVertex(2));
+	board.drawLine(m_upper.getVertex(0), m_upper.getVertex(2));
+	board.drawLine(m_lower.getVertex(0), m_lower.getVertex(1));
+	board.drawLine(m_lower.getVertex(1), m_lower.getVertex(2));
+
 }
 Kite::~Kite()
 {

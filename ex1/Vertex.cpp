@@ -1,12 +1,12 @@
 #include "Vertex.h"
 #include "macros.h"
-#include "cmath"
-
+#include <cmath>
+#include "Vertex.h"
 bool Vertex::equals(const Vertex & first, const Vertex & second) const
 {
 
 	double epsilon = 0.001;
-	if ((std::abs(first.m_x - second.m_x) <= epsilon) && (std::abs(first.m_y - second.m_y <= epsilon)))
+	if ((abs(first.m_x - second.m_x) <= epsilon) && (abs(first.m_y - second.m_y <= epsilon)))
 		return true;
 
 	return false;

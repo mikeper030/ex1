@@ -5,10 +5,10 @@
 #include "Vertex.h"
 #include "Board.h"
 
-#define RECTANGLE           0
+#define RECTANGLE           1
 #define ISOSCELESTRIANGLE   0
 #define HOUSE               0
-#define KITE                1
+#define KITE                0
 
 #if RECTANGLE
 #include "Rectangle.h"
@@ -174,6 +174,7 @@ void drawAndPrint(const Rectangle& rect, Board& board)
 	rect.draw(board);
 	board.print();
 	waitForEnter();
+	
 
 	std::cout << "Now with the bounding rectangle, too:\n";
 	Rectangle boundingRect = rect.getBoundingRectangle();
@@ -181,7 +182,7 @@ void drawAndPrint(const Rectangle& rect, Board& board)
 	board.print();
 	waitForEnter();
 
-
+	
 	std::cout << "The bottom-left vertex of the rectangle is: ";
 	printVertex(rect.getBottomLeft());
 	std::cout << '\n';

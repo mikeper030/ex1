@@ -127,12 +127,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files (1)\ex1_files\Board.cpp" />
     <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files\Utilities.cpp" />
-    <ClCompile Include="..\..\..\..\Desktop\OOP1\ex1_files\Vertex.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="IsoscelesTriangle.cpp" />
     <ClCompile Include="Kite.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shapes.cpp" />
+    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

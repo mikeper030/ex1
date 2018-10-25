@@ -83,7 +83,7 @@ double IsoscelesTriangle::getHeight() const
 
 void IsoscelesTriangle::draw(Board & board) const
 {
-	board.drawLine();
+	//board.drawLine();
 }
 
 Rectangle IsoscelesTriangle::getBoundingRectangle() const

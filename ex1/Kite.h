@@ -13,6 +13,7 @@ public:
 	double getArea()const;
 	double getPerimeter()const;
 	Vertex getCenter()const;
+	bool scale(double);
 	~Kite();
 private:
 	bool isTrianglesok(IsoscelesTriangle first, IsoscelesTriangle second)const;

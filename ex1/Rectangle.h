@@ -20,11 +20,12 @@ public:
 	double getArea() const;
 	double getPerimeter() const;
 	Vertex getCenter() const;
+	bool isScalingLegal(const Rectangle&,double);
 	bool scale(double factor);
 
 
 private:
-	Vertex bottom_left, top_right; // m_bottomLeft
+	Vertex m_bottom_left,m_top_right; // m_bottomLeft
 	void verifyInput();
 
 };
