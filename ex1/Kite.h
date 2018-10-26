@@ -13,9 +13,11 @@ public:
 	double getArea()const;
 	double getPerimeter()const;
 	Vertex getCenter()const;
+	bool scale(double);
 	~Kite();
 private:
-	IsoscelesTriangle upper,lower;
+	bool isTrianglesok(IsoscelesTriangle first, IsoscelesTriangle second)const;
+	IsoscelesTriangle m_upper,m_lower;
 
 };
 

@@ -1,4 +1,7 @@
+#pragma once
 #include "House.h"
+#include"Rectangle.h"
+#include "IsoscelesTriangle.h"
 
 
 
@@ -11,7 +14,7 @@ House::House()
 	m_triag[2] = { 30,20 };
 }
 
-House::House(const Rectangle & rectangle, const IsoscelesTriangle & triangle)
+House::House(const Rectangle& rectangle, const IsoscelesTriangle& triangle)
 	:House()
 {
 	if (rectangle.getTopRight().m_y == triangle.getVertex(2).m_y 
