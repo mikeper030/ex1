@@ -1,6 +1,5 @@
 #include "IsoscelesTriangle.h"
 const double Epsilon = 0.01;
-const double t = 0;
 //default constructor
 IsoscelesTriangle::IsoscelesTriangle()
 {
