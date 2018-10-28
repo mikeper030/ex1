@@ -6,6 +6,7 @@ bool doubleEqual(double a, double b)
     return std::abs(a - b) <= 1;
 }
 
+
 // Some helper functions for addLine()
 double distance(const Vertex& v1, const Vertex& v2)
 {
