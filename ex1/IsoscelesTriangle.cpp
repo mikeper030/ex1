@@ -1,6 +1,6 @@
 #include "IsoscelesTriangle.h"
-const double Epsilon = 0.01;
 
+const double Epsilon = 0.01;
 //default constructor
 IsoscelesTriangle::IsoscelesTriangle()
 {
@@ -14,8 +14,10 @@ IsoscelesTriangle::IsoscelesTriangle(const Vertex vertices[3])
 	:IsoscelesTriangle()
 {
 	if (vertices[0].isValid() && vertices[1].isValid() 
-		&& vertices[2].isValid() && (vertices[0].m_y - vertices[2].m_y) <= Epsilon)
+		&& vertices[2].isValid() && (vertices[0].m_y - vertices[2].m_y) <= Epsilon &&
+		doubleEqual(distance(m_vertices[0],m_vertices[1]),distance(m_vertices[1],m_vertices[2])))
 	{
+		
 		m_vertices[0] = vertices[0];
 		m_vertices[1] = vertices[1];
 		m_vertices[2] = vertices[2];
@@ -50,7 +52,7 @@ bool IsoscelesTriangle::parallel() const
 {
 	if (m_vertices[0].m_x != m_vertices[2].m_x)
 		return false;
-	else
+	
 		return true;
 }
 
@@ -78,7 +80,7 @@ double IsoscelesTriangle::getScelesLength() const
 
 double IsoscelesTriangle::getHeight() const
 {
-	return m_vertices[1].m_y;
+	return m_vertices[1].m_y-m_vertices[0].m_y;
 }
 
 void IsoscelesTriangle::draw(Board & board) const
@@ -90,12 +92,12 @@ void IsoscelesTriangle::draw(Board & board) const
 
 Rectangle IsoscelesTriangle::getBoundingRectangle() const
 {
-	return Rectangle();
+	return Rectangle(m_vertices[0], Vertex{m_vertices[2].m_x,m_vertices[1].m_y});
 }
 
 double IsoscelesTriangle::getArea() const
 {
-	return getLength()*getHeight();
+	return (getLength()*getHeight()/2);
 }
 
 double IsoscelesTriangle::getPerimeter() const
@@ -108,16 +110,7 @@ Vertex IsoscelesTriangle::getCenter() const
 	return Vertex{m_vertices[0].m_x+(getLength()/2),m_vertices[0].m_y+(getHeight()/2)};
 }
 
-bool IsoscelesTriangle::scale(double factor)
-{
-	double addOfSizeOf_X = getLength() / 2,
-		addOfSizeOf_Y = getHeight() / 2;
 
-	m_vertices[0] = {m_vertices[0].m_x- addOfSizeOf_X,m_vertices[0].m_y- addOfSizeOf_Y };
-	m_vertices[1] = {m_vertices[1].m_x,m_vertices[1].m_y+ addOfSizeOf_Y };
-	m_vertices[2] = { m_vertices[2].m_x + addOfSizeOf_X ,m_vertices[2].m_y - addOfSizeOf_Y };
-	return true;
-}
 
 
 IsoscelesTriangle::~IsoscelesTriangle()
