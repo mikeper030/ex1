@@ -83,7 +83,9 @@ double IsoscelesTriangle::getHeight() const
 
 void IsoscelesTriangle::draw(Board & board) const
 {
-	//board.drawLine();
+	board.drawLine(m_vertices[0],m_vertices[1]);
+	board.drawLine(m_vertices[1], m_vertices[2]);
+	board.drawLine(m_vertices[0], m_vertices[2]);
 }
 
 Rectangle IsoscelesTriangle::getBoundingRectangle() const
@@ -108,7 +110,13 @@ Vertex IsoscelesTriangle::getCenter() const
 
 bool IsoscelesTriangle::scale(double factor)
 {
-	return false;
+	double addOfSizeOf_X = getLength() / 2,
+		addOfSizeOf_Y = getHeight() / 2;
+
+	m_vertices[0] = {m_vertices[0].m_x- addOfSizeOf_X,m_vertices[0].m_y- addOfSizeOf_Y };
+	m_vertices[1] = {m_vertices[1].m_x,m_vertices[1].m_y+ addOfSizeOf_Y };
+	m_vertices[2] = { m_vertices[2].m_x + addOfSizeOf_X ,m_vertices[2].m_y - addOfSizeOf_Y };
+	return true;
 }
 
 

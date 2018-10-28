@@ -3,6 +3,8 @@
 #include "Rectangle.h"
 #include "Board.h"
 #include "Vertex.h"
+#include "Utilities.h"
+
 
 class House
 {

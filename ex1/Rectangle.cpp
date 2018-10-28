@@ -87,20 +87,24 @@ Vertex Rectangle::getCenter() const
 {
 	return Vertex{getWidth()/2,getHeight()/2};
 }
-bool isScalingLegal(const Rectangle& rect,double factor)
+bool Rectangle::isScalingLegal(const Rectangle& rect, double factor)
 {
 	double origin_width = rect.getWidth();
 	double new_width = rect.getWidth()*factor;
 	double origin_height = rect.getHeight();
 	double new_height = rect.getHeight()*factor;
 	//only check new x and y value with max values
-	if ((rect.getTopRight().m_x + ((new_width - origin_width) / 2) > MAX_X)||
+	if ((rect.getTopRight().m_x + ((new_width - origin_width) / 2) > MAX_X) ||
 		rect.getTopRight().m_y + ((new_height - origin_width) / 2) > MAX_Y)
 		return false;
 
 	return true;
-	
 }
+/*
+bool isScalingLegal(const Rectangle& rect,double factor)
+{
+}
+*/
 bool Rectangle::scale(double factor)
 {
 	if (factor >= 1) 

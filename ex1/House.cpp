@@ -73,6 +73,49 @@ double House::getWidthDifferent() const
 	}
 }
 
+void House::draw(Board & board) const
+{
+	Vertex bottomRight = { m_rect[1].m_x,m_rect[0].m_y },
+		topLeft = {m_rect[0].m_x,m_rect[1].m_y};
+
+
+
+	board.drawLine(m_rect[0], topLeft);
+	board.drawLine(topLeft, m_rect[1]);
+	board.drawLine(m_rect[1], bottomRight);
+	board.drawLine(bottomRight,m_rect[0]);
+	board.drawLine(m_triag[0], m_triag[2]);
+	board.drawLine(m_triag[0], m_triag[1]);
+	board.drawLine(m_triag[1], m_triag[2]);
+
+}
+
+Rectangle House::getBoundingRectangle() const
+{
+	return Rectangle();
+}
+
+double House::getArea() const
+{
+	return (m_rect[1].m_x - m_rect[0].m_x)*(m_rect[1].m_y - m_rect[0].m_y)
+		+(m_triag[2].m_x-m_triag[0].m_x)*(m_triag[1].m_y - m_triag[0].m_y);
+}
+
+double House::getPerimeter() const
+{
+	return (m_rect[1].m_x - m_rect[0].m_x) + 2*(m_rect[1].m_y - m_rect[0].m_y) + 2*(distance(m_triag[0],m_triag[1]));
+}
+
+Vertex House::getCenter() const
+{
+	return Vertex{m_triag[0].m_x+(m_triag[2].m_x-m_triag[0].m_x)/2,m_rect[1].m_y};
+}
+
+bool House::scale(double factor)
+{
+	return false;
+}
+
 
 House::~House()
 {
