@@ -1,4 +1,5 @@
 #include "IsoscelesTriangle.h"
+
 const double Epsilon = 0.01;
 //default constructor
 IsoscelesTriangle::IsoscelesTriangle()
@@ -13,8 +14,10 @@ IsoscelesTriangle::IsoscelesTriangle(const Vertex vertices[3])
 	:IsoscelesTriangle()
 {
 	if (vertices[0].isValid() && vertices[1].isValid() 
-		&& vertices[2].isValid() && (vertices[0].m_y - vertices[2].m_y) <= Epsilon)
+		&& vertices[2].isValid() && (vertices[0].m_y - vertices[2].m_y) <= Epsilon &&
+		doubleEqual(distance(m_vertices[0],m_vertices[1]),distance(m_vertices[1],m_vertices[2])))
 	{
+		
 		m_vertices[0] = vertices[0];
 		m_vertices[1] = vertices[1];
 		m_vertices[2] = vertices[2];
@@ -107,10 +110,7 @@ Vertex IsoscelesTriangle::getCenter() const
 	return Vertex{m_vertices[0].m_x+(getLength()/2),m_vertices[0].m_y+(getHeight()/2)};
 }
 
-bool IsoscelesTriangle::scale(double factor)
-{
-	return false;
-}
+
 
 
 IsoscelesTriangle::~IsoscelesTriangle()
