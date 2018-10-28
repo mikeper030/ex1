@@ -32,7 +32,7 @@ Rectangle::Rectangle(const Vertex& bottomLeft, const Vertex& topRight)
 }
 Vertex Rectangle::getBottomLeft()const
 {
-	return Vertex{};
+	return Vertex{m_bottom_left.m_x,m_bottom_left.m_y};
 }
 Rectangle::Rectangle(double x0, double y0, double x1, double y1)
 	:Rectangle(Vertex{ x0,y0 }, Vertex{ x1,y1 })

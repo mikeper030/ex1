@@ -5,8 +5,8 @@
 #include "Vertex.h"
 #include "Board.h"
 
-#define RECTANGLE           1
-#define ISOSCELESTRIANGLE   0
+#define RECTANGLE           0
+#define ISOSCELESTRIANGLE   1
 #define HOUSE               0
 #define KITE                0
 

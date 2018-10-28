@@ -50,7 +50,7 @@ bool IsoscelesTriangle::parallel() const
 {
 	if (m_vertices[0].m_x != m_vertices[2].m_x)
 		return false;
-	else
+	
 		return true;
 }
 
@@ -78,22 +78,24 @@ double IsoscelesTriangle::getScelesLength() const
 
 double IsoscelesTriangle::getHeight() const
 {
-	return m_vertices[1].m_y;
+	return m_vertices[1].m_y-m_vertices[0].m_y;
 }
 
 void IsoscelesTriangle::draw(Board & board) const
 {
-	//board.drawLine();
+	board.drawLine(m_vertices[0],m_vertices[1]);
+	board.drawLine(m_vertices[1], m_vertices[2]);
+	board.drawLine(m_vertices[0], m_vertices[2]);
 }
 
 Rectangle IsoscelesTriangle::getBoundingRectangle() const
 {
-	return Rectangle();
+	return Rectangle(m_vertices[0], Vertex{m_vertices[2].m_x,m_vertices[1].m_y});
 }
 
 double IsoscelesTriangle::getArea() const
 {
-	return getLength()*getHeight();
+	return (getLength()*getHeight()/2);
 }
 
 double IsoscelesTriangle::getPerimeter() const
