@@ -24,7 +24,7 @@ House::House(const Rectangle& rectangle, const IsoscelesTriangle& triangle)
 	{
 		m_rect[0] = rectangle.getBottomLeft();
 		m_rect[1] = rectangle.getTopRight();
-		m_triag[0] = triangle.getVertex(0);
+ 		m_triag[0] = triangle.getVertex(0);
 		m_triag[1] = triangle.getVertex(1);
 		m_triag[2] = triangle.getVertex(2);
 	}

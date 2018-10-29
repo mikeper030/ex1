@@ -1,4 +1,5 @@
 #include "IsoscelesTriangle.h"
+#include <iostream>
 
 const double Epsilon = 0.01;
 //default constructor
@@ -63,6 +64,7 @@ void IsoscelesTriangle::inithlizing()
 	m_vertices[2] = Vertex{ 30,20 };
 }
 
+
 Vertex IsoscelesTriangle::getVertex(int index) const
 {
 	return m_vertices[index] ;
@@ -109,9 +111,50 @@ Vertex IsoscelesTriangle::getCenter() const
 {
 	return Vertex{m_vertices[0].m_x+(getLength()/2),m_vertices[0].m_y+(getHeight()/2)};
 }
+//do scale by calculate
+bool IsoscelesTriangle::scale(double factor)
+{
+	double newWidth = getLength() * factor;
+	//std::cout << newWidth << " " << getLength();
+	double newHeight = getHeight() * factor;
+	//std::cout << newHeight << " " << getHeight();
 
+	if (factor >= 1)
+	{
+		m_vertices[0] = { m_vertices[0].m_x - ((newWidth - getLength()) / 2),m_vertices[0].m_y - (newHeight - getHeight()) / 2 };
+		m_vertices[2] = { m_vertices[2].m_x + ((newWidth - getLength()) / 2),m_vertices[2].m_y - (newHeight - getHeight()) / 2 };
+		m_vertices[0] = { m_vertices[0].m_x ,m_vertices[0].m_y + (newHeight - getHeight()) / 2 };
+		
+		if (!isLegal())
+		{
+			m_vertices[0] = Vertex{ 20,20 };
+			m_vertices[1] = Vertex{ 25,25 };
+			m_vertices[2] = Vertex{ 30,20 };
+			return false;
+		}
+	}
+	else
+	{
+		m_vertices[0] = { m_vertices[0].m_x + (newWidth - getLength()) / 2,m_vertices[0].m_y + (newHeight - getHeight()) / 2 };
+		m_vertices[2] = { m_vertices[2].m_x - (newWidth - getLength()) / 2,m_vertices[2].m_y + (newHeight - getHeight()) / 2 };
+		m_vertices[0] = { m_vertices[0].m_x ,m_vertices[0].m_y - (newHeight - getHeight()) / 2 };
+	}
+	return true;
+}
 
-
+bool IsoscelesTriangle::isLegal()
+{
+	if (m_vertices[0].isValid() && m_vertices[1].isValid()
+		&& m_vertices[2].isValid() && (m_vertices[0].m_y - m_vertices[2].m_y) <= Epsilon &&
+		doubleEqual(distance(m_vertices[0], m_vertices[1]), distance(m_vertices[1], m_vertices[2])))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 IsoscelesTriangle::~IsoscelesTriangle()
 {

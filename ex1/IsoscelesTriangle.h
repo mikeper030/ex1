@@ -28,6 +28,7 @@ private:
 	bool parallel()const;
 	bool checkVer() const;
 	void inithlizing();
+	bool isLegal();
 
 };
 
