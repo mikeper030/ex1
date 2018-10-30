@@ -25,7 +25,11 @@ public:
 	~House();
 
 private:
-	Vertex m_rect[2];
-	Vertex m_triag[3];
+	Rectangle m_rect;
+	IsoscelesTriangle m_trig;
+
+
+	//Vertex m_rect[2];
+	//Vertex m_triag[3];
 };
 

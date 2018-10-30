@@ -4,50 +4,48 @@
 #include "IsoscelesTriangle.h"
 
 
-
+/*
 House::House()
 {
-	m_rect[0] = { 20,10 };
-	m_rect[1] = { 30,20 };
-	m_triag[0] = { 20,20 };
-	m_triag[1] = { 25,25 };
-	m_triag[2] = { 30,20 };
-}
 
+}
+*/
 House::House(const Rectangle& rectangle, const IsoscelesTriangle& triangle)
-	:House()
+	//:House()
 {
-	if (rectangle.getTopRight().m_y == triangle.getVertex(2).m_y 
-		|| triangle.getVertex(0).m_y == rectangle.getTopRight().m_y
-		|| rectangle.getBottomLeft().m_x >= triangle.getVertex(0).m_x
-		|| rectangle.getTopRight().m_x <= triangle.getVertex(2).m_x)
+	if (rectangle.getTopRight().m_y == triangle.getVertex(0).m_y
+		&& rectangle.getBottomLeft().m_x >= triangle.getVertex(0).m_x
+		&& rectangle.getTopRight().m_x <= triangle.getVertex(2).m_x)
 	{
-		m_rect[0] = rectangle.getBottomLeft();
-		m_rect[1] = rectangle.getTopRight();
- 		m_triag[0] = triangle.getVertex(0);
-		m_triag[1] = triangle.getVertex(1);
-		m_triag[2] = triangle.getVertex(2);
+		m_rect = rectangle;
+		m_trig = triangle;
+	}
+	else
+	{
+		m_rect.getBottomLeft() = { 20,10 };
+		m_rect.getTopRight() = { 30,20 };
+		m_trig.getVertex(0) = { 20,20 };
+		m_trig.getVertex(1) = { 25,25 };
+		m_trig.getVertex(2) = { 30,20 };
 	}
 }
 
 
 House::House(const Vertex & roofTop, double width, double roofHeight, double baseHeight)
 {
-	m_rect[0].m_y = roofTop.m_y - roofHeight - baseHeight;
-	m_rect[0].m_x = roofTop.m_x - width / 2;
-	m_rect[1].m_x = roofTop.m_x + width / 2;
-	m_triag[1] = roofTop;
-	m_rect[1].m_y = m_triag[0].m_y = m_triag[2].m_y = roofTop.m_y - roofHeight;
-	m_triag[2] = m_rect[1];
-	m_triag[0].m_x = m_rect[0].m_x;
+	m_rect.getBottomLeft() = { roofTop.m_y - roofHeight - baseHeight, roofTop.m_x - width / 2 };
+	m_rect.getTopRight() = { roofTop.m_x + width / 2, roofTop.m_y + width/2};
+	m_trig.getVertex(0) = { m_rect.getBottomLeft().m_x,m_rect.getBottomLeft().m_y };
+	m_trig.getVertex(1) = { roofTop };
+	m_trig.getVertex(2) = { m_rect.getTopRight().m_x ,m_rect.getTopRight().m_y };
 }
 
 bool House::extendRoof(double width)
 {
-	if (m_triag[2].m_x - m_triag[0].m_x < width)
+	if (m_trig.getLength() < width)
 	{
-		m_triag[2].m_x = width / 2 + m_triag[1].m_x;
-		m_triag[0].m_x = m_triag[2].m_x - width;
+		m_trig.getVertex(0) = { m_trig.getVertex(1).m_x - width / 2 ,m_rect.getTopRight().m_y };
+		m_trig.getVertex(2) = { width / 2 + m_trig.getVertex(1).m_x ,m_rect.getTopRight().m_y };
 		return true;
 	}
 	else
@@ -58,36 +56,27 @@ bool House::extendRoof(double width)
 
 double House::getHeight() const
 {
-	return (m_triag[1].m_y - m_rect[0].m_y);
+	return (m_rect.getHeight()+m_trig.getHeight());
 }
 
 double House::getWidthDifferent() const
 {
-	if ((m_triag[2].m_x - m_triag[0].m_x) - (m_rect[1].m_x - m_rect[0].m_x) > 0)
+	if (distance(m_trig.getVertex(0),m_trig.getVertex(2))
+	> distance({m_rect.getBottomLeft().m_x,m_rect.getTopRight().m_y}, m_rect.getTopRight()))
 	{
-		return ((m_triag[2].m_x - m_triag[0].m_x)-(m_rect[1].m_x-m_rect[0].m_x));
+		return (distance(m_trig.getVertex(0), m_trig.getVertex(2))
+	- distance({ m_rect.getBottomLeft().m_x,m_rect.getTopRight().m_y }, m_rect.getTopRight()));
 	}
 	else
 	{
 		return 0;
 	}
 }
-
+//need to fix here
 void House::draw(Board & board) const
 {
-	Vertex bottomRight = { m_rect[1].m_x,m_rect[0].m_y },
-		topLeft = {m_rect[0].m_x,m_rect[1].m_y};
-
-
-
-	board.drawLine(m_rect[0], topLeft);
-	board.drawLine(topLeft, m_rect[1]);
-	board.drawLine(m_rect[1], bottomRight);
-	board.drawLine(bottomRight,m_rect[0]);
-	board.drawLine(m_triag[0], m_triag[2]);
-	board.drawLine(m_triag[0], m_triag[1]);
-	board.drawLine(m_triag[1], m_triag[2]);
-
+	board.drawLine();
+	m_trig.draw;
 }
 
 Rectangle House::getBoundingRectangle() const
@@ -97,18 +86,17 @@ Rectangle House::getBoundingRectangle() const
 
 double House::getArea() const
 {
-	return (m_rect[1].m_x - m_rect[0].m_x)*(m_rect[1].m_y - m_rect[0].m_y)
-		+(m_triag[2].m_x-m_triag[0].m_x)*(m_triag[1].m_y - m_triag[0].m_y);
+	return (m_rect.getArea()+m_trig.getArea());
 }
 
 double House::getPerimeter() const
 {
-	return (m_rect[1].m_x - m_rect[0].m_x) + 2*(m_rect[1].m_y - m_rect[0].m_y) + 2*(distance(m_triag[0],m_triag[1]));
+	return (m_rect.getPerimeter()+m_trig.getPerimeter());
 }
 
 Vertex House::getCenter() const
 {
-	return Vertex{m_triag[0].m_x+(m_triag[2].m_x-m_triag[0].m_x)/2,m_rect[1].m_y};
+	return Vertex{m_trig.getVertex(0).m_x + (m_trig.getLength()/2),m_trig.getVertex(0).m_y};
 }
 
 bool House::scale(double factor)
