@@ -4,12 +4,12 @@
 #include "IsoscelesTriangle.h"
 
 
-/*
+
 House::House()
 {
 
 }
-*/
+
 House::House(const Rectangle& rectangle, const IsoscelesTriangle& triangle)
 	//:House()
 {
@@ -75,13 +75,20 @@ double House::getWidthDifferent() const
 //need to fix here
 void House::draw(Board & board) const
 {
-	board.drawLine();
-	m_trig.draw;
+	Vertex topLeft = { m_rect.getBottomLeft().m_x,m_rect.getTopRight().m_y };
+	Vertex bottomRight = { m_rect.getBottomLeft().m_y,m_rect.getTopRight().m_x };
+	board.drawLine(m_trig.getVertex(0), m_trig.getVertex(1));
+	board.drawLine(m_trig.getVertex(1), m_trig.getVertex(2));
+	board.drawLine(m_trig.getVertex(0), m_trig.getVertex(2));
+	board.drawLine(m_rect.getBottomLeft(),topLeft);
+	//board.drawLine(topLeft,m_rect.getTopRight());
+	board.drawLine(m_rect.getTopRight(),bottomRight );
+	board.drawLine(bottomRight,m_rect.getBottomLeft());
 }
 
 Rectangle House::getBoundingRectangle() const
 {
-	return Rectangle();
+	return Rectangle({ m_trig.getVertex(0).m_x ,m_rect.getBottomLeft().m_y}, { m_trig.getVertex(2).m_x,m_trig.getVertex(1).m_y });
 }
 
 double House::getArea() const

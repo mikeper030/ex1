@@ -56,7 +56,7 @@ int main()
 
 		board.clear();
 		std::cout << "Now scaled by factor of 2:\n\n";
-		bool scaling = rect.scale(10);
+		bool scaling = rect.scale(2);
 		if (scaling)
 		{
 			drawAndPrint(rect, board);
