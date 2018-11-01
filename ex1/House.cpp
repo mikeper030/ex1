@@ -76,14 +76,13 @@ double House::getWidthDifferent() const
 void House::draw(Board & board) const
 {
 	Vertex topLeft = { m_rect.getBottomLeft().m_x,m_rect.getTopRight().m_y };
-	Vertex bottomRight = { m_rect.getBottomLeft().m_y,m_rect.getTopRight().m_x };
+	Vertex bottomRight = {m_rect.getTopRight().m_x , m_rect.getBottomLeft().m_y };
 	board.drawLine(m_trig.getVertex(0), m_trig.getVertex(1));
 	board.drawLine(m_trig.getVertex(1), m_trig.getVertex(2));
 	board.drawLine(m_trig.getVertex(0), m_trig.getVertex(2));
 	board.drawLine(m_rect.getBottomLeft(),topLeft);
-	//board.drawLine(topLeft,m_rect.getTopRight());
 	board.drawLine(m_rect.getTopRight(),bottomRight );
-	board.drawLine(bottomRight,m_rect.getBottomLeft());
+	board.drawLine( m_rect.getBottomLeft(),bottomRight);
 }
 
 Rectangle House::getBoundingRectangle() const
@@ -108,7 +107,35 @@ Vertex House::getCenter() const
 
 bool House::scale(double factor)
 {
-	return false;
+	double oldWidthRctangle = m_rect.getWidth();
+	double oldHeightRectangle = m_rect.getHeight();
+	double oldWidthTriangle = m_trig.getLength() ;
+	double oldHeightTriangle = m_trig.getHeight() ;
+	double newWidthRctangle = m_rect.getWidth() * factor;
+	double newHeightRectangle = m_rect.getHeight() * factor;
+	double newWidthTriangle = m_trig.getLength() * factor;
+	double newHeightTriangle = m_trig.getHeight() * factor;
+	if (factor > 1)
+	{
+		m_trig.getVertex(0) = {m_trig.getVertex(0).m_x - ((newWidthTriangle- oldWidthTriangle)/2),m_trig.getVertex(0).m_y};
+		m_trig.getVertex(2) = { m_trig.getVertex(2).m_x + ((newWidthTriangle - oldWidthTriangle) / 2),m_trig.getVertex(2).m_y };
+		m_trig.getVertex(1) = {m_trig.getVertex(1).m_x, m_trig.getVertex(1).m_y + ((newHeightTriangle - oldHeightTriangle) / 2) };
+		m_rect.getBottomLeft() = { m_rect.getBottomLeft().m_x-((newWidthRctangle- oldWidthRctangle)/2),
+									m_rect.getBottomLeft().m_y-((newHeightRectangle- oldHeightRectangle)/2)};
+		m_rect.getTopRight() = { m_rect.getTopRight().m_x + ((newWidthRctangle - oldWidthRctangle) / 2) ,m_rect.getTopRight().m_y };
+
+	}
+	else
+	{
+		m_trig.getVertex(0) = { m_trig.getVertex(0).m_x + ((newWidthTriangle - oldWidthTriangle) / 2),m_trig.getVertex(0).m_y };
+		m_trig.getVertex(2) = { m_trig.getVertex(2).m_x - ((newWidthTriangle - oldWidthTriangle) / 2),m_trig.getVertex(2).m_y };
+		m_trig.getVertex(1) = { m_trig.getVertex(1).m_x, m_trig.getVertex(1).m_y - ((newHeightTriangle - oldHeightTriangle) / 2) };
+		m_rect.getBottomLeft() = { m_rect.getBottomLeft().m_x + ((newWidthRctangle - oldWidthRctangle) / 2),
+									m_rect.getBottomLeft().m_y + ((newHeightRectangle - oldHeightRectangle) / 2) };
+		m_rect.getTopRight() = { m_rect.getTopRight().m_x - ((newWidthRctangle - oldWidthRctangle) / 2) ,m_rect.getTopRight().m_y };
+	}
+
+	return true;
 }
 
 

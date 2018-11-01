@@ -6,8 +6,8 @@
 #include "Board.h"
 
 #define RECTANGLE           0
-#define ISOSCELESTRIANGLE   1
-#define HOUSE               0
+#define ISOSCELESTRIANGLE   0
+#define HOUSE               1
 #define KITE                0
 
 #if RECTANGLE
