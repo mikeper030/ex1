@@ -1,80 +1,137 @@
 #pragma once
 #include "House.h"
-#include"Rectangle.h"
-#include "IsoscelesTriangle.h"
 
-
-
-House::House()
-{
-	m_rect[0] = { 20,10 };
-	m_rect[1] = { 30,20 };
-	m_triag[0] = { 20,20 };
-	m_triag[1] = { 25,25 };
-	m_triag[2] = { 30,20 };
-}
+const Vertex vertices_r[] = { { 20,10 },{ 30,20 } };
+const Vertex vertices_t[] = { {20,20},{25,25},{30,20} };
 
 House::House(const Rectangle& rectangle, const IsoscelesTriangle& triangle)
-	:House()
+	:m_rect(vertices_r),m_trig(vertices_t)
 {
-	if (rectangle.getTopRight().m_y == triangle.getVertex(2).m_y 
-		|| triangle.getVertex(0).m_y == rectangle.getTopRight().m_y
-		|| rectangle.getBottomLeft().m_x >= triangle.getVertex(0).m_x
-		|| rectangle.getTopRight().m_x <= triangle.getVertex(2).m_x)
+	if (valid(rectangle,triangle))
 	{
-		m_rect[0] = rectangle.getBottomLeft();
-		m_rect[1] = rectangle.getTopRight();
-		m_triag[0] = triangle.getVertex(0);
-		m_triag[1] = triangle.getVertex(1);
-		m_triag[2] = triangle.getVertex(2);
+		m_rect = rectangle;
+		m_trig = triangle;
 	}
+	
 }
 
 
 House::House(const Vertex & roofTop, double width, double roofHeight, double baseHeight)
+	:m_rect(vertices_r), m_trig(vertices_t)
 {
-	m_rect[0].m_y = roofTop.m_y - roofHeight - baseHeight;
-	m_rect[0].m_x = roofTop.m_x - width / 2;
-	m_rect[1].m_x = roofTop.m_x + width / 2;
-	m_triag[1] = roofTop;
-	m_rect[1].m_y = m_triag[0].m_y = m_triag[2].m_y = roofTop.m_y - roofHeight;
-	m_triag[2] = m_rect[1];
-	m_triag[0].m_x = m_rect[0].m_x;
+	
+	Rectangle r = Rectangle({ roofTop.m_y - roofHeight - baseHeight, roofTop.m_x - width / 2 },
+		{ roofTop.m_x + width / 2, roofTop.m_y + width / 2 });
+	
+	Vertex vrs[] = { { m_rect.getBottomLeft().m_x , m_rect.getBottomLeft().m_y }
+		, { roofTop }, 
+	{ m_rect.getTopRight().m_x ,m_rect.getTopRight().m_y } };
+	
+	IsoscelesTriangle t = IsoscelesTriangle(vrs);
+	if (valid(r, t))
+	{
+		m_rect = r;
+		m_trig = t;
+	}
 }
 
 bool House::extendRoof(double width)
 {
-	if (m_triag[2].m_x - m_triag[0].m_x < width)
+	
+	if (m_trig.getLength() <= width&&isRoofExtensionLegal(width))
 	{
-		m_triag[2].m_x = width / 2 + m_triag[1].m_x;
-		m_triag[0].m_x = m_triag[2].m_x - width;
+		m_trig.getVertex(0) = { m_trig.getVertex(1).m_x - width / 2 ,m_rect.getTopRight().m_y };
+		m_trig.getVertex(2) = { width / 2 + m_trig.getVertex(1).m_x ,m_rect.getTopRight().m_y };
 		return true;
 	}
-	else
-	{
 		return false;
-	}
+	
 }
 
 double House::getHeight() const
 {
-	return (m_triag[1].m_y - m_rect[0].m_y);
+	return (m_rect.getHeight() + m_trig.getHeight());
 }
 
-double House::getWidthDifferent() const
+
+
+void House::draw(Board & board) const
 {
-	if ((m_triag[2].m_x - m_triag[0].m_x) - (m_rect[1].m_x - m_rect[0].m_x) > 0)
-	{
-		return ((m_triag[2].m_x - m_triag[0].m_x)-(m_rect[1].m_x-m_rect[0].m_x));
-	}
-	else
-	{
-		return 0;
-	}
+	Vertex topLeft = { m_rect.getBottomLeft().m_x,m_rect.getTopRight().m_y };
+	Vertex bottomRight = { m_rect.getTopRight().m_x , m_rect.getBottomLeft().m_y };
+	board.drawLine(m_trig.getVertex(0), m_trig.getVertex(1));
+	board.drawLine(m_trig.getVertex(1), m_trig.getVertex(2));
+	board.drawLine(m_trig.getVertex(0), m_trig.getVertex(2));
+	board.drawLine(m_rect.getBottomLeft(), topLeft);
+	board.drawLine(m_rect.getTopRight(), bottomRight);
+	board.drawLine(m_rect.getBottomLeft(), bottomRight);
 }
 
-
-House::~House()
+Rectangle House::getBoundingRectangle() const
 {
+	return Rectangle({ m_trig.getVertex(0).m_x ,m_rect.getBottomLeft().m_y }, { m_trig.getVertex(2).m_x,m_trig.getVertex(1).m_y });
 }
+
+double House::getArea() const
+{
+	return (m_rect.getArea() + m_trig.getArea());
+}
+//need to fix the crossing line
+double House::getPerimeter() const
+{
+	return (m_rect.getPerimeter() + m_trig.getPerimeter());
+}
+
+Vertex House::getCenter() const
+{
+	return Vertex{ m_trig.getVertex(0).m_x + (m_trig.getLength() / 2),m_trig.getVertex(0).m_y };
+}
+
+bool House::scale(double factor)
+{
+	House tempHouse(m_rect, m_trig);
+	tempHouse.m_rect.scale(factor, tempHouse.getCenter());
+	tempHouse.m_trig.scale(factor, tempHouse.getCenter(), true);
+	if (isLegal(tempHouse))
+	{
+		m_rect = tempHouse.m_rect;
+		m_trig = tempHouse.m_trig;
+		return true;
+	}
+	
+		return false;
+	
+}
+bool  House::valid(Rectangle r,IsoscelesTriangle t)const
+{
+	return(sameY(r.getTopRight(),t.getVertex(0))
+		&& r.getBottomLeft().m_x >= t.getVertex(0).m_x
+		&& getWidthDifference()>0)
+		&&t.getVertex(1).m_y>r.getTopRight().m_y;
+}
+
+double House::getWidthDifference() const
+{
+	return m_trig.getVertex(2).m_x-m_rect.getTopRight().m_x>0? 
+		m_trig.getVertex(2).m_x - m_rect.getTopRight().m_x > 0:0;
+}
+bool House::isRoofExtensionLegal(double width)
+{
+	double ex = width / 2;
+	double o_xl = m_trig.getVertex(0).m_x;
+	double o_xr = m_trig.getVertex(2).m_x;
+	Vertex v1{ o_xl - ex,1 }, v2{ o_xr + ex,1 };
+
+	return (v1.isValid()&&v2.isValid());
+
+}
+bool House::isLegal(House& h)
+{
+	return(h.m_rect.getBottomLeft().isValid()&&
+		h.m_rect.getTopRight().isValid()
+		&&h.m_trig.getVertex(0).isValid()
+		&&m_trig.getVertex(1).isValid()
+		&&h.m_trig.getVertex(2).isValid());
+}
+
 

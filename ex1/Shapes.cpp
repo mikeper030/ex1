@@ -6,9 +6,9 @@
 #include "Board.h"
 
 #define RECTANGLE           0
-#define ISOSCELESTRIANGLE   1
+#define ISOSCELESTRIANGLE   0
 #define HOUSE               0
-#define KITE                0
+#define KITE                1
 
 #if RECTANGLE
 #include "Rectangle.h"
@@ -155,15 +155,15 @@ int main()
 
 		board.clear();
 		std::cout << "Now scaled by factor of 2:\n\n";
-		//bool scaling = kite.scale(2);
-	//	if (scaling)
-	//	{
-	//		drawAndPrint(kite, board);
-	//	}
-	//	else
-	//	{
-	//		std::cout << "Scaling failed!\n";
-//		}
+		bool scaling = kite.scale(2);
+		if (scaling)
+		{
+			drawAndPrint(kite, board);
+		}
+		else
+		{
+			std::cout << "Scaling failed!\n";
+		}
 	}
 #endif // KITE
 }

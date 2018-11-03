@@ -1,10 +1,15 @@
 #pragma once
 #include "Vertex.h"
 #include "IsoscelesTriangle.h"
+#include "Board.h"
+#include "Utilities.h"
+#include <math.h>
+
 class Kite
 {
 public:
-	Kite();
+	//Kite();
+	
 	Kite(const IsoscelesTriangle triangles[2]);
 	Kite(const Vertex& top, double width, double topHeight, double bottomHeight);
 	double getTotalHeight()const;
@@ -14,10 +19,15 @@ public:
 	double getPerimeter()const;
 	Vertex getCenter()const;
 	bool scale(double);
-	~Kite();
+	
 private:
 	bool isTrianglesok(IsoscelesTriangle first, IsoscelesTriangle second)const;
-	IsoscelesTriangle m_upper,m_lower;
+	
+	IsoscelesTriangle m_lower,m_upper;
+
+	bool scale(double,Vertex);
+	bool checkRange(IsoscelesTriangle)const;
+	void init();
 
 };
 

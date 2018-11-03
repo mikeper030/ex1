@@ -1,7 +1,5 @@
 #include "Vertex.h"
-#include "macros.h"
-#include <cmath>
-#include "Vertex.h"
+
 bool Vertex::equals(const Vertex & first, const Vertex & second) const
 {
 

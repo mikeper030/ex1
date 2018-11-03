@@ -8,7 +8,7 @@ class IsoscelesTriangle
 {
 public:
 
-	IsoscelesTriangle();
+	//IsoscelesTriangle();
 	IsoscelesTriangle(const Vertex vertices[3]);
 	IsoscelesTriangle(const Vertex& center, double width, double height);
 	Vertex getVertex(int index)const;
@@ -22,12 +22,14 @@ public:
 	double getPerimeter() const;
 	Vertex getCenter() const;
 	bool scale(double factor);
-	~IsoscelesTriangle();
+	bool scale(double factor, Vertex center,bool);
+	
 private:
 	Vertex m_vertices[3];
+	void init();
 	bool parallel()const;
-	bool checkVer() const;
-	void inithlizing();
+	bool checkRange(Vertex,Vertex,Vertex) const;
+	bool valid(Vertex,Vertex,Vertex);
 
 };
 
