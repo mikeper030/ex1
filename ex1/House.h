@@ -9,27 +9,49 @@
 class House
 {
 public:
+	//constructor that initializes by using  objects of
+	//rectangle and triangle
 	House(const Rectangle& rectangle, const IsoscelesTriangle& triangle);
-	House(const Vertex& roofTop, double width, double roofHeight, double baseHeight);
-	//function methods
-	bool extendRoof(double width);//extendes the roof by given width
-	double getHeight()const; //return the total height of the house
-	void draw(Board & board) const;//draw the house to the board
-	Rectangle getBoundingRectangle() const;//returns the bounding rectangle
-	double getArea() const;//returns the total area of the house
-	double getPerimeter() const;
-	Vertex getCenter() const;//returns the total height of the house
-	bool scale(double factor);//scale the house by a given factor
-	double getWidthDifference()const;//returns the width difference of roof and base
 
-	
+	//create the  of House by using parameters of width roofheight and baseHeight
+	House(const Vertex& roofTop, double width, double roofHeight, double baseHeight);
+	//function method
+
+	// check if the roof is legal
+	bool extendRoof(double width);
+
+	//function returns height of house
+	double getHeight()const;
+
+	//draw house by using he draw of rectangle and triangle
+	void draw(Board & board) const;
+
+	//function return two points for bounding shape
+	Rectangle getBoundingRectangle() const;
+
+	//function return area of House
+	double getArea() const;
+
+	//function return Perimeter of house
+	double getPerimeter() const;
+
+	//function returns center of house
+	Vertex getCenter() const;
+
+	//function doing the scales of house by using scales scales implemented
+	//of triangle and rectangle
+	bool scale(double factor);
+
+	//function return width difference between roof and basis
+	double getWidthDifference()const;
+
+
 
 private:
-	Rectangle m_rect;  //private member variable
-	IsoscelesTriangle m_trig; //private member variable
-	bool isRoofExtensionLegal(double);//checks if the given roof extension is legal
-	bool isLegal(House&);//checks if the house is in range
-	bool valid(Rectangle, IsoscelesTriangle)const;//check if the rectangle and triangle objects are valid by given rules
-	bool checkRange(const IsoscelesTriangle&,const Rectangle&)const;//check if the house object is legal by given rulse
+	Rectangle m_rect;
+	IsoscelesTriangle m_trig;
+	bool isRoofExtensionLegal(double);
+	bool isLegal(House&);
+	bool valid(Rectangle, IsoscelesTriangle)const;
+	bool checkRange(const IsoscelesTriangle&, const Rectangle&)const;
 };
-

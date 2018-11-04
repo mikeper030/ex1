@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-
 #include "macros.h"
 #include "Vertex.h"
 #include "Board.h"
