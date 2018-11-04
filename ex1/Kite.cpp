@@ -4,7 +4,8 @@ const Vertex vertices1[3] = { {20,20},{25,25},{30,20} };
 const Vertex vertices2[3] = { {20,20} ,{25, 15},{30, 20} };
 
 //first is upper second is lower since there is no default constructor immidieate init is executed
-Kite::Kite(const IsoscelesTriangle triangles[2]) :m_lower(vertices2),m_upper(vertices1)
+Kite::Kite(const IsoscelesTriangle triangles[2])
+	:m_lower(vertices2),m_upper(vertices1)
 {
 	
 	if (isTrianglesok(triangles[0], triangles[1]))
@@ -104,7 +105,7 @@ bool Kite::scale(double factor)
 bool Kite::scale(double factor,Vertex center)
 {
 	IsoscelesTriangle l_temp(m_lower), u_temp(m_upper);
-	if (l_temp.scale(factor, center,false) && u_temp.scale(factor, center,true))
+	if (l_temp.scale(factor, center,false) && u_temp.scale(factor, center,true)&&checkRange(l_temp)&&checkRange(u_temp))
 	{
 		m_lower = l_temp; m_upper = u_temp;
 		return true;
@@ -113,11 +114,9 @@ bool Kite::scale(double factor,Vertex center)
 }
 bool Kite::checkRange(IsoscelesTriangle t)const
 {
-	//std::cout << t.getVertex(0).m_x <<" "<< t.getVertex(0).m_y <<"|" <<t.getVertex(1).m_x<<" " <<t.getVertex(1).m_y<<"|"<< t.getVertex(2).m_x<<" "<<t.getVertex(2).m_y<<"|   ";
-	if (t.getVertex(0).isValid()&&t.getVertex(1).isValid()&&t.getVertex(2).isValid())
-		return true;
-
-		return false;
+	
+	return(t.getVertex(0).isValid() && t.getVertex(1).isValid() && t.getVertex(2).isValid());
+	
 }
 void Kite::draw(Board& board)const
 {

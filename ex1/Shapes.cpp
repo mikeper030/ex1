@@ -7,8 +7,8 @@
 
 #define RECTANGLE           0
 #define ISOSCELESTRIANGLE   0
-#define HOUSE               0
-#define KITE                1
+#define HOUSE               1
+#define KITE                0
 
 #if RECTANGLE
 #include "Rectangle.h"

@@ -60,8 +60,8 @@ bool IsoscelesTriangle::parallel() const
 
 bool IsoscelesTriangle::valid(Vertex v1, Vertex v2,Vertex v3)
 {
-	return(std::abs(v1.m_y - v3.m_y)) <= Epsilon &&
-		  doubleEqual(distance(v1, v2), distance(v2, v3))&& parallel();
+	return(parallel()&&
+		  doubleEqual(distance(v1, v2), distance(v2, v3))&& parallel());
 }
 
 Vertex IsoscelesTriangle::getVertex(int index) const

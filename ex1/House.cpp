@@ -1,16 +1,16 @@
 #pragma once
 #include "House.h"
-
+#include "iostream"
 const Vertex vertices_r[] = { { 20,10 },{ 30,20 } };
 const Vertex vertices_t[] = { {20,20},{25,25},{30,20} };
 
 House::House(const Rectangle& rectangle, const IsoscelesTriangle& triangle)
 	:m_rect(vertices_r),m_trig(vertices_t)
 {
-	if (valid(rectangle,triangle))
+	if (valid(rectangle,triangle)&&checkRange(triangle,rectangle))
 	{
-		m_rect = rectangle;
-		m_trig = triangle;
+		m_rect =Rectangle( rectangle);
+		m_trig = IsoscelesTriangle(triangle);
 	}
 	
 }
@@ -28,7 +28,7 @@ House::House(const Vertex & roofTop, double width, double roofHeight, double bas
 	{ m_rect.getTopRight().m_x ,m_rect.getTopRight().m_y } };
 	
 	IsoscelesTriangle t = IsoscelesTriangle(vrs);
-	if (valid(r, t))
+	if (valid(r, t)&checkRange(t,r))
 	{
 		m_rect = r;
 		m_trig = t;
@@ -106,8 +106,14 @@ bool  House::valid(Rectangle r,IsoscelesTriangle t)const
 {
 	return(sameY(r.getTopRight(),t.getVertex(0))
 		&& r.getBottomLeft().m_x >= t.getVertex(0).m_x
-		&& getWidthDifference()>0)
-		&&t.getVertex(1).m_y>r.getTopRight().m_y;
+		&& getWidthDifference()>=0)
+		&&t.getVertex(1).m_y>=r.getTopRight().m_y;
+}
+
+bool House::checkRange(const IsoscelesTriangle&t,const Rectangle&r)const 
+{
+	return (t.getVertex(0).isValid()&&t.getVertex(1).isValid()&&t.getVertex(2).isValid()
+		&&r.getBottomLeft().isValid()&&r.getTopRight().isValid());
 }
 
 double House::getWidthDifference() const

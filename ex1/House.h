@@ -20,7 +20,6 @@ public:
 	double getPerimeter() const;
 	Vertex getCenter() const;
 	bool scale(double factor);
-	bool valid(Rectangle,IsoscelesTriangle)const;
 	double getWidthDifference()const;
 
 	
@@ -30,5 +29,7 @@ private:
 	IsoscelesTriangle m_trig;
 	bool isRoofExtensionLegal(double);
 	bool isLegal(House&);
+	bool valid(Rectangle, IsoscelesTriangle)const;
+	bool checkRange(const IsoscelesTriangle&,const Rectangle&)const;
 };
 
